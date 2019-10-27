@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include "arraygenerator.h"
+#include "algorithms.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -18,25 +20,28 @@
 #define BEST 'b'
 #define WORST 'w'
 
-int getValue(char *[],int);
+long int getValue(char *[],int);
 char getEntranceMode(char *[],int);
 char getAlgorithm(char *[]);
 void getOptionalParameters(char*, int*, char*[],int);
 int isNumber(char*);
 /** Apenas para Debug**/
 void DEBUGEntryParameters(long int,char,char,int);
+void DEBUGArrayCreation(long int, long int*,char);
+void DEBUGPrintArray(long int, long int*);
 
-/*** programa modo n [-opcao] [-i] ***/
+/*** programa algoritmo n [mode,runs] ***/
+/** Exemplo: ./main insertion 20 w **/
 int main(int argc, char *argv[]) 
 {
     long int n, *v;
-    int runs;
-    char algorithm;
-    char mode;
+    int runs;       /** Opcional, para suporte de várias experimentos individuais (não implementado) **/
+    char algorithm; 
+    char mode;      /** Opcional, especifica se é melhor, pior, ou caso médio. Nada especificado -> caso médio **/
 
     if(argc < 3) 
     {
-        printf("Falta de parâmetros. Digite --help para mais informações.");
+        printf("Falta de parâmetros. Digite --help para mais informações."); /** TO DO: implementar help **/
         exit(EXIT_FAILURE);
     }
 
@@ -48,19 +53,61 @@ int main(int argc, char *argv[])
     }
 
     n = getValue(argv,2);
-
     getOptionalParameters(&mode,&runs,argv,argc);
 
     /** DEBUG **/
-    DEBUGEntryParameters(n,algorithm,mode,runs);
+    /* Verificação de parametros de entrada e alocação dinâmica. */
+    DEBUGEntryParameters(n,algorithm,mode,runs); 
 
+    /* Configuração e chamada de algoritmos */
+    switch (algorithm)
+    {
+        case INSERTION:
+            v = setupInsertionSort(n,mode);
+            DEBUGPrintArray(n,v);
+            // START TIME
+            InsertionSort(n,v);
+            // END TIME
+            DEBUGPrintArray(n,v);
+            break;
+        case BUBBLE:
+            // v = setupBubbleSort(n,mode);
+            // START TIME
+            // BubbleSort(n,v);
+            // END TIME
+            break;
+        case SELECTION:
+            // v = setupSelectionSort(n,mode);
+            // START TIME
+            // SelectionSort(n,v);
+            // END TIME
+            break;
+        case MERGE:
+            // v = setupMergeSort(n,mode);
+            // START TIME
+            // MergeSort(n,v);
+            // END TIME
+            break;
+        case QUICK:
+            // v = setupQuickSort(n,mode);
+            // START TIME
+            // QuickSort(n,v);
+            // END TIME
+            break;
+        case HEAP:
+            // v = setupHeapSort(n,mode);
+            // START TIME
+            // HeapSort(n,v);
+            // END TIME
+            break;
+    }
     return 0;
 }
 
-int getValue(char *argv[],int v) 
+long int getValue(char *argv[],int v) 
 {
     char *p;
-    int value = strtol(argv[v], &p, 10);
+    long int value = strtol(argv[v], &p, 10);
     if (value < 1) return 1;
     return value;
 }
@@ -164,10 +211,10 @@ char getEntranceMode(char *argv[], int v)
         case 'W':
             return WORST;
             break;
-        case 'm':
+        case 'a':
             return AVERAGE;
             break;
-        case 'M':
+        case 'A':
             return AVERAGE;
             break;
         default:
@@ -189,6 +236,8 @@ int isNumber(char* string)
     return TRUE;
 }
 
+/** Funções somente para verificação e testes. **/
+
 void DEBUGEntryParameters(long int n, char algorithm, char mode, int runs)
 {
     printf("Parametros: \n");
@@ -196,5 +245,15 @@ void DEBUGEntryParameters(long int n, char algorithm, char mode, int runs)
     printf("algorithm: %c \n", algorithm);
     printf("mode: %c \n", mode);
     printf("runs: %d \n", runs);
-    printf(" ----- DEBUG END -----\n");
+    printf(" ----- END OF DEBUG ENTRYPAR  -----\n");
+}
+
+void DEBUGPrintArray(long int n, long int *v)
+{
+    printf("\n Estado de v \n");
+    for(int i = 0; i < n; i++)
+    {
+        printf("[%d] ",v[i]);
+    }
+    printf("\n ----- END OF DEBUG OF ARRAY CHECK -----\n");
 }
