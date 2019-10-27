@@ -1,0 +1,6 @@
+# Ignorar arquivos:
+*.o
+*.exe
+
+# Ignorar Pastas:
+.vscode/

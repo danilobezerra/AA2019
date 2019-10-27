@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -13,52 +14,55 @@
 #define QUICK 'Q'
 #define HEAP 'H'
 
-int getSize(char *argv[]);
-char getEntranceMode(char *argv[]);
-char getAlgorithm(char *argv[]);
+#define AVERAGE 'a'
+#define BEST 'b'
+#define WORST 'w'
 
-/*** programa n modo [-opcao] [-i] ***/
+int getValue(char *[],int);
+char getEntranceMode(char *[],int);
+char getAlgorithm(char *[]);
+void getOptionalParameters(char*, int*, char*[],int);
+int isNumber(char*);
+/** Apenas para Debug**/
+void DEBUGEntryParameters(long int,char,char,int);
+
+/*** programa modo n [-opcao] [-i] ***/
 int main(int argc, char *argv[]) 
 {
-    long int n, *v, runs;
+    long int n, *v;
+    int runs;
     char algorithm;
     char mode;
 
-    if(argc < 2) 
+    if(argc < 3) 
     {
         printf("Falta de parâmetros. Digite --help para mais informações.");
         exit(EXIT_FAILURE);
     }
 
-    n = getSize(argv);
     algorithm = getAlgorithm(argv);
     if(algorithm == ' ') 
     {
-        printf("Algoritm odesconhecido. Abortando");
+        printf("Algoritmo desconhecido. Abortando");
         exit(EXIT_FAILURE);
     }
 
-    if(argc > 2) 
-    {
-        mode = getEntranceMode(argv);
-        if(argc == 4) 
-        {
-            runs = getEntranceMode(argv);
-        }
-        else 
-        {
-            runs = 1;
-        }
-    }
+    n = getValue(argv,2);
 
-    printf("Parametros: [%d,%c,%c,%d]", n, algorithm, mode, runs);
+    getOptionalParameters(&mode,&runs,argv,argc);
+
+    /** DEBUG **/
+    DEBUGEntryParameters(n,algorithm,mode,runs);
+
     return 0;
 }
 
-int getSize(char *argv[]) 
+int getValue(char *argv[],int v) 
 {
     char *p;
-    return strtol(argv[1], &p, 20);
+    int value = strtol(argv[v], &p, 10);
+    if (value < 1) return 1;
+    return value;
 }
 
 char getAlgorithm(char *argv[])
@@ -93,26 +97,104 @@ char getAlgorithm(char *argv[])
     }
 }
 
-char getEntranceMode(char *argv[])
+void getOptionalParameters(char *mode, int *runs, char*argv[], int argc)
+{   
+    if(argc == 3) 
+    {
+        *mode = AVERAGE;
+        *runs = 1;
+    }
+    else 
+    {
+        /* Modo entrada primeiro, depois numero de testes */
+        if(!isNumber(argv[3])) 
+        {
+            *mode = getEntranceMode(argv,3);
+            if(argc == 5) 
+            {
+                if(isNumber(argv[4])) 
+                {
+                    *runs = getValue(argv,4);
+                }
+            }
+            else 
+            {
+                *runs = 1;
+            }
+        }
+        /*numero de interações, depois modo*/
+        else 
+        {
+            if(isNumber(argv[3]))
+            {
+                *runs = getValue(argv,3);
+            }
+            else 
+            {
+                *runs = 1;
+            }
+            if(argc == 5) 
+            {
+                *mode = getEntranceMode(argv,4);
+            }
+            else
+            {
+                *mode = AVERAGE;
+            }           
+        }
+    }
+    
+}
+
+char getEntranceMode(char *argv[], int v)
 {
-    char c = argv[2][0];
+    char c = argv[v][0];
 
     switch (c)
     {
         case 'b':
-            return 'b';
+            return BEST;
             break;
         case 'B':
-            return 'b';
+            return BEST;
             break;
         case 'w':
-            return 'w';
+            return WORST;
             break;
         case 'W':
-            return 'w';
+            return WORST;
+            break;
+        case 'm':
+            return AVERAGE;
+            break;
+        case 'M':
+            return AVERAGE;
             break;
         default:
-            return 'm';
+            return AVERAGE;
             break;
     }
+}
+
+int isNumber(char* string)
+{
+
+    for(int i = 0; i < strlen(string); i++) 
+    {
+        if(!isdigit(string[i]))
+        {
+            return FALSE;
+        }
+    }
+    return TRUE;
+}
+
+void DEBUGEntryParameters(long int n, char algorithm, char mode, int runs)
+{
+    printf("Parametros: \n");
+    printf("n: %d \n", n);
+    printf("algorithm: %c \n", algorithm);
+    printf("mode: %c \n", mode);
+    printf("runs: %d \n", runs);
+    printf(" ----- DEBUG END -----\n");
 }
