@@ -71,16 +71,20 @@ int main(int argc, char *argv[])
             DEBUGPrintArray(n,v);
             break;
         case BUBBLE:
-            // v = setupBubbleSort(n,mode);
+            v = setupBubbleSort(n,mode);
+            DEBUGPrintArray(n,v);
             // START TIME
-            // BubbleSort(n,v);
+            BubbleSort(n,v);
             // END TIME
+            DEBUGPrintArray(n,v);
             break;
         case SELECTION:
-            // v = setupSelectionSort(n,mode);
+            v = setupSelectionSort(n,mode);
+            DEBUGPrintArray(n,v);
             // START TIME
-            // SelectionSort(n,v);
+            SelectionSort(n,v);
             // END TIME
+            DEBUGPrintArray(n,v);
             break;
         case MERGE:
             // v = setupMergeSort(n,mode);

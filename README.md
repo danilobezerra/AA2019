@@ -4,12 +4,10 @@ Repositório do trabalho da disciplina de Análise de Algoritmos da UFABC
 # Feito:
 - Estrutura básica do relatório: capa, índice e seções. (Melhorar um pouco no visual ainda, talvez?)
 - Estrutura básica do programa, leitura dos parâmetros, seguido do controle de fluxo esperado. (Revisado, e mais flexível)
-- InsertionSort funcionando para todos os casos.
+- Algoritmos elementares (Insertion, Selection e Bubble) funcionando para todas entradas (melhor, pior, random)
 
 # O que falta fazer:
 1) Implementar os algoritmos em algoritmos.c:
--- BubbleSort
--- SelectionSort
 -- MergeSort
 -- QuickSort
 -- HeapSort
