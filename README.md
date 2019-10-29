@@ -1,18 +1,18 @@
 # AA2019
+
 Repositório do trabalho da disciplina de Análise de Algoritmos da UFABC
 
-# Feito:
-- Estrutura básica do relatório: capa, índice e seções. (Melhorar um pouco no visual ainda, talvez?)
-- Estrutura básica do programa, leitura dos parâmetros, seguido do controle de fluxo esperado. (Revisado, e mais flexível)
-- Algoritmos elementares (Insertion, Selection e Bubble) funcionando para todas entradas (melhor, pior, random)
+## Tarefas:
 
-# O que falta fazer:
-1) Implementar os algoritmos em algoritmos.c:
--- MergeSort
--- QuickSort
--- HeapSort
-2) Fazer a geração do melhor, pior e rando para cada algoritmo restante de 1).
-3) Descrever o funcionamento dos algoritmos (com pseudo código?)
-4) Definir ambiente de execução
-5) Resultados e Análise
-6) [Opcional] Listar do documentos e referências
+- [x] Estrutura básica do relatório: capa, índice e seções. (_Melhorar um pouco no visual ainda, talvez?_)
+- [x] Estrutura básica do programa, leitura dos parâmetros, seguido do controle de fluxo esperado. (_Revisado, e mais flexível_)
+- [x] Algoritmos elementares (_Insertion, Selection e Bubble_) funcionando para todas entradas (_melhor, pior, random_)
+- [ ] Implementar os algoritmos em algoritmos.c:
+  - MergeSort
+  - QuickSort
+  - HeapSort
+- [ ] Fazer a geração do melhor, pior e randômico para cada algoritmo restante
+- [ ] Descrever o funcionamento dos algoritmos (_com pseudo código?_)
+- [ ] Definir ambiente de execução
+- [ ] Resultados e Análise
+- [ ] Listar do documentos e referências (_Opcional_)
