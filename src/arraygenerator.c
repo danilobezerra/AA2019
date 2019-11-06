@@ -16,7 +16,10 @@ long int* allocateArray(long int n)
 long int* increascingOrder(long int n)
 {
     long int *v = allocateArray(n);
-    for(int i = 0; i < n; i++) v[i] = i;
+    for(int i = 0; i < n; i++) {
+		v[i] = i;
+	}
+	
     return v;
 }
 

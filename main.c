@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     char algorithm; 
     char mode;      /** Opcional, especifica se é melhor, pior, ou caso médio. Nada especificado -> caso médio **/
 
+	printf("%d \n", argc);
     if(argc < 3) 
     {
         printf("Falta de parâmetros. Digite --help para mais informações."); /** TO DO: implementar help **/
@@ -245,7 +246,7 @@ int isNumber(char* string)
 void DEBUGEntryParameters(long int n, char algorithm, char mode, int runs)
 {
     printf("Parametros: \n");
-    printf("n: %d \n", n);
+    printf("n: %ld \n", n);
     printf("algorithm: %c \n", algorithm);
     printf("mode: %c \n", mode);
     printf("runs: %d \n", runs);
@@ -257,7 +258,7 @@ void DEBUGPrintArray(long int n, long int *v)
     printf("\n Estado de v \n");
     for(int i = 0; i < n; i++)
     {
-        printf("[%d] ",v[i]);
+        printf("[%ld] ",v[i]);
     }
     printf("\n ----- END OF DEBUG OF ARRAY CHECK -----\n");
 }
