@@ -7,14 +7,16 @@
 #include "algorithms.h"
 #include "arraygenerator.h"
 
-int entries = 0;
 void (*sort) (int *, int) = NULL;
 void (*order) (int *, int) = NULL;
 
-void run_timer() {
+// ./sort algorithm order entries step
+void run_timer(int entries, int step) {
 	clock_t t1, t2;
 
-	for (int i = 1; i <= entries; i++) {
+	for (int i = 0; i <= entries; i += step) {
+		if (i == 0) continue;
+
 		int arr[i];
 		int n = sizeof(arr) / sizeof(arr[0]);
 
@@ -35,7 +37,7 @@ int compare(char const *a, char const *b) {
 
 int main(int argc, char *argv[]) {
 	if (argc < 3) { 
-        printf("Falta de parâmetros. Digite --help para mais informações."); 
+        printf("Falta de parâmetros. Digite --help para mais informações.\n"); 
         return 1;
     }
 
@@ -46,29 +48,37 @@ int main(int argc, char *argv[]) {
 	} else if (compare("selection", argv[1])) {
 		sort = &selection_sort;
 	} else if (compare("merge", argv[1])) {
-		// TODO: sort = merge_sort;
+		// TODO: sort = &merge_sort;
 	} else if (compare("quick", argv[1])) {
-		// TODO: sort = quick_sort;
+		// TODO: sort = &quick_sort;
 	} else if (compare("heap", argv[1])) {
-		// TODO: sort = heap_sort;
+		// TODO: sort = &heap_sort;
 	} else {
 		printf("Algoritmo desconhecido. Abortando"); 
         return 1;
 	}
 
-	entries = atoi(argv[2]);
-
-	if (compare("sorted", argv[3])) {
+	if (compare("sorted", argv[2])) {
 		order = &sorted_order;
-	} else if (compare("reverse", argv[3])) {
+	} else if (compare("reverse", argv[2])) {
 		order = &reverse_order;
-	} else if (compare("random", argv[3])) {
+	} else if (compare("random", argv[2])) {
 		order = &random_order;
 	} else {
 		printf("Ordem desconhecida. Abortando"); 
         return 1;
 	}
+	
+	int entries = 1000;
+ 	if (argc > 3 && argv[3] != NULL) {
+		entries = atoi(argv[3]);
+	}
 
-	run_timer();
+	int step = 1;
+	if (argc > 4 && argv[4] != NULL) {
+		step = atoi(argv[4]);
+	}
+
+	run_timer(entries, step);
 	return 0;
 }
