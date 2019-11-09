@@ -1,9 +1,9 @@
 #!/bin/bash
 
 gcc -o sort main.c algorithms.c arraygenerator.c -lm
-./sort insertion 5000 reverse > insertionsort.dat
-./sort bubble 5000 reverse > bubblesort.dat
-./sort selection 5000 reverse > selectionsort.dat
+./sort insertion reverse 4096 4 > insertionsort.dat
+./sort bubble reverse 4096 4 > bubblesort.dat
+./sort selection reverse 4096 4 > selectionsort.dat
 
 gcc gnuplot_graph.c -o gnuplot_graph
 ./gnuplot_graph
