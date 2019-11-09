@@ -1,9 +1,15 @@
 #include "algorithms.h"
 
-void insertion_sort(long int* arr, long int n)
+void swap(int *a, int *b) { 
+    int temp = *a; 
+    *a = *b; 
+    *b = temp; 
+} 
+
+void insertion_sort(int *arr, int n)
 {
 	for (int i = 1; i < n; i++) {
-        long int x = arr[i];
+        int x = arr[i];
         int j = i - 1;
         while (j >= 0 && arr[j] > x) {
             arr[j + 1] = arr[j];
@@ -13,19 +19,17 @@ void insertion_sort(long int* arr, long int n)
     }
 }
 
-void bubble_sort(long int* arr, long int n)
+void bubble_sort(int *arr, int n)
 {
     for (int i = n - 1; i >= 0; i--) {
         for (int j = 0; j < i; j++) {
             if (arr[j] > arr[j + 1]) {
-                int x = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = x;
+                swap(&arr[j], &arr[j + 1]);
             }
         }
     }
 }
-void selection_sort(long int* arr, long int n)
+void selection_sort(int *arr, int n)
 {
     for (int i = 0; i < n; i++) {
         int min = i;
@@ -34,13 +38,11 @@ void selection_sort(long int* arr, long int n)
                 min = j;
             }
         }
-        int x = arr[i];
-        arr[i] = arr[min];
-        arr[min] = x;
+        swap(&arr[i], &arr[min]);
     }
 }
 
-// TODO: void merge_sort();
-// TODO: void quick_sort();
-// TODO: void heap_sort();
+// TODO: void merge_sort(int *arr, int n);
+// TODO: void quick_sort(int *arr, int n);
+// TODO: void heap_sort(int *arr, int n);
 

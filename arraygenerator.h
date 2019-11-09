@@ -1,3 +1,3 @@
-void random_order(long int*, int);
-void ascending_order(long int*, int);
-void descending_order(long int*, int);
+void random_order(int *, int);
+void sorted_order(int *, int);
+void reverse_order(int *, int);

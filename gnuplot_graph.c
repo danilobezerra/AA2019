@@ -20,6 +20,9 @@ int main(int argc, char **argv)
     fprintf(gnuplot, "set xlabel 'Tamanho da entrada (N)'\n");
     fprintf(gnuplot, "set ylabel 'Tempo de execução (segundos)'\n");
 
-    fprintf(gnuplot, "plot 'selectionsort.dat'\n");
+    fprintf(gnuplot, "plot 'insertionsort.dat'\n");
+    fprintf(gnuplot, "rep 'bubblesort.dat'\n");
+    fprintf(gnuplot, "rep 'selectionsort.dat'\n");
+    
     fflush(gnuplot);
 }
