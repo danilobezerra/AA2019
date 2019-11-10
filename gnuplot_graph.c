@@ -23,6 +23,7 @@ int main(int argc, char **argv)
     fprintf(gnuplot, "plot 'insertionsort.dat'\n");
     fprintf(gnuplot, "rep 'bubblesort.dat'\n");
     fprintf(gnuplot, "rep 'selectionsort.dat'\n");
+    fprintf(gnuplot, "rep 'mergesort.dat'\n");
     
     fflush(gnuplot);
 }

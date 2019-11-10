@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
 	} else if (compare("selection", argv[1])) {
 		sort = &selection_sort;
 	} else if (compare("merge", argv[1])) {
-		// TODO: sort = &merge_sort;
+		sort = &merge_sort;
 	} else if (compare("quick", argv[1])) {
 		// TODO: sort = &quick_sort;
 	} else if (compare("heap", argv[1])) {
