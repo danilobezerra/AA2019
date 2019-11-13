@@ -1,4 +1,5 @@
 #include "utils.h"
+
 #include <string.h>
 #include <stdlib.h>
 
@@ -15,18 +16,18 @@ int compare(char const *str_a, char const *str_b) {
 
 void random_order(int *buf, int count) {
     for (int i = 0; i < count; ++i) {
-		buf[i] = rand();
-	} 
+        buf[i] = rand();
+    }
 }
 
 void sorted_order(int *buf, int count) {
     for (int i = 0; i < count; ++i) {
-		buf[i] = i;
-	} 
+        buf[i] = i;
+    }
 }
 
 void reverse_order(int *buf, int count) {
     for (int i = 0; i < count; ++i) {
-		buf[count - i - 1] = i;
-	} 
+        buf[count - i - 1] = i;
+    }
 }

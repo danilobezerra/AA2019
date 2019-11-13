@@ -2,9 +2,8 @@
 #include <stdlib.h>
 
 #define GNUPLOT "gnuplot -persist"
-  
-int main(int argc, char **argv)
-{
+
+int main(int argc, char **argv) {
     FILE *gnuplot;
 
     gnuplot = popen(GNUPLOT, "w");
@@ -24,6 +23,6 @@ int main(int argc, char **argv)
     fprintf(gnuplot, "rep 'bubblesort.dat'\n");
     fprintf(gnuplot, "rep 'selectionsort.dat'\n");
     fprintf(gnuplot, "rep 'mergesort.dat'\n");
-    
+
     fflush(gnuplot);
 }

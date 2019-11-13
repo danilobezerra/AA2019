@@ -1,5 +1,5 @@
 #include "insertion_sort.h"
- 
+
 int insertion_sort(int *arr, int size) {
     for (int i = 1; i < size; i++) {
         int key = arr[i];
@@ -12,6 +12,6 @@ int insertion_sort(int *arr, int size) {
 
         arr[j + 1] = key;
     }
-    
+
     return 0;
 }
