@@ -1,13 +1,17 @@
 #include <time.h>
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-#include "algorithms.h"
-#include "arraygenerator.h"
+#include "algorithms/insertion_sort.h"
+#include "algorithms/bubble_sort.h"
+#include "algorithms/selection_sort.h"
+#include "algorithms/merge_sort.h"
+#include "algorithms/quick_sort.h"
+#include "algorithms/heap_sort.h"
 
-void (*sort) (int *, int) = NULL;
+#include "algorithms/utils.h"
+
+int (*algorithm) (int *, int) = NULL;
 void (*order) (int *, int) = NULL;
 
 // ./sort algorithm order entries step
@@ -23,16 +27,11 @@ void run_timer(int entries, int step) {
     	(*order) (arr, n);
 
 		t1 = clock();
-		(*sort) (arr, n);
+		(*algorithm) (arr, n);
 		t2 = clock();
 
 		printf("%d \t %.6f\n", n, (double)(t2 - t1) / CLOCKS_PER_SEC);
 	}
-}
-
-int compare(char const *a, char const *b) {
-    int result = strcasecmp(a, b);
-    return result == 0;
 }
 
 int main(int argc, char *argv[]) {
@@ -42,17 +41,17 @@ int main(int argc, char *argv[]) {
     }
 
 	if (compare("insertion", argv[1])) {
-		sort = &insertion_sort;
+		algorithm = &insertion_sort;
 	} else if (compare("bubble", argv[1])) {
-		sort = &bubble_sort;
+		algorithm = &bubble_sort;
 	} else if (compare("selection", argv[1])) {
-		sort = &selection_sort;
+		algorithm = &selection_sort;
 	} else if (compare("merge", argv[1])) {
-		sort = &merge_sort;
+		algorithm = &merge_sort;
 	} else if (compare("quick", argv[1])) {
-		// TODO: sort = &quick_sort;
+		algorithm = &quick_sort;
 	} else if (compare("heap", argv[1])) {
-		// TODO: sort = &heap_sort;
+		algorithm = &heap_sort;
 	} else {
 		printf("Algoritmo desconhecido. Abortando"); 
         return 1;

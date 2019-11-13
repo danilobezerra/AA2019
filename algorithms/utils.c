@@ -1,5 +1,17 @@
+#include "utils.h"
+#include <string.h>
 #include <stdlib.h>
-#include "arraygenerator.h"
+
+void swap(int *item_a, int *item_b) {
+    int temp = *item_a;
+    *item_a = *item_b;
+    *item_b = temp;
+}
+
+int compare(char const *str_a, char const *str_b) {
+    int result = strcasecmp(str_a, str_b);
+    return result == 0;
+}
 
 void random_order(int *buf, int count) {
     for (int i = 0; i < count; ++i) {
