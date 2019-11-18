@@ -43,12 +43,12 @@ int merge(int *arr, int start, int middle, int end) {
     return 0;
 }
 
-int sort(int *arr, int start, int end) {
+int m_sort(int *arr, int start, int end) {
     if (start < end) {
         int middle = (start + end) / 2;
 
-        sort(arr, start, middle);
-        sort(arr, middle + 1, end);
+        m_sort(arr, start, middle);
+        m_sort(arr, middle + 1, end);
 
         merge(arr, start, middle, end);
     }
@@ -57,6 +57,6 @@ int sort(int *arr, int start, int end) {
 }
 
 int merge_sort(int *arr, int size) {
-    sort(arr, 0, size - 1);
+    m_sort(arr, 0, size - 1);
     return 0;
 }
