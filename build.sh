@@ -10,6 +10,6 @@ mkdir -p .data
 ./sort selection random 10000 100 > .data/selection_sort.dat
 ./sort merge random 10000 100 > .data/merge_sort.dat
 ./sort quick random 10000 100 > .data/quick_sort.dat
-#./sort heap random 10000 100 > .data/heap_sort.dat
+./sort heap random 10000 100 > .data/heap_sort.dat
 
 ./gnuplot_graph

@@ -24,7 +24,7 @@ int main(int argc, char **argv) {
     fprintf(gnuplot, "rep '.data/selection_sort.dat'\n");
     fprintf(gnuplot, "rep '.data/merge_sort.dat'\n");
     fprintf(gnuplot, "rep '.data/quick_sort.dat'\n");
-    //fprintf(gnuplot, "rep '.data/heap_sort.dat'\n");
+    fprintf(gnuplot, "rep '.data/heap_sort.dat'\n");
 
     fflush(gnuplot);
 }
