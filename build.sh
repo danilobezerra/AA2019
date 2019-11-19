@@ -5,9 +5,11 @@ gcc gnuplot_graph.c -o gnuplot_graph
 
 mkdir -p .data
 
-./sort insertion reverse 100000 1000 > .data/insertion_sort.dat
-./sort bubble reverse 100000 1000 > .data/bubble_sort.dat
-./sort selection reverse 100000 1000 > .data/selection_sort.dat
-./sort merge reverse 100000 1000 > .data/merge_sort.dat
+./sort insertion random 10000 100 > .data/insertion_sort.dat
+./sort bubble random 10000 100 > .data/bubble_sort.dat
+./sort selection random 10000 100 > .data/selection_sort.dat
+./sort merge random 10000 100 > .data/merge_sort.dat
+./sort quick random 10000 100 > .data/quick_sort.dat
+#./sort heap random 10000 100 > .data/heap_sort.dat
 
 ./gnuplot_graph
