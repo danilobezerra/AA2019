@@ -12,7 +12,7 @@ Repositório do trabalho da disciplina de Análise de Algoritmos da UFABC
   - QuickSort
   - HeapSort
 - [x] Fazer a geração do melhor, pior e randômico para cada algoritmo restante
-- [ ] Descrever o funcionamento dos algoritmos (_com pseudo código?_)
-- [ ] Definir ambiente de execução
-- [ ] Resultados e Análise
-- [ ] Listar do documentos e referências (_Opcional_)
+- [x] Descrever o funcionamento dos algoritmos (_com pseudo código?_)
+- [x] Definir ambiente de execução
+- [x] Resultados e Análise
+- [x] Listar do documentos e referências (_Opcional_)
